@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index()
-    {
-        $articles = Article::with('category')->get();
+    { 
+        $articles = Article::with('category', 'tags', 'comments')->paginate(10);
         return view('articles.index', compact('articles'));
     }
 

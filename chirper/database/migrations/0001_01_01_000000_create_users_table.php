@@ -12,13 +12,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name'); // Store the user's name
             $table->string('email')->unique(); // Store the user's email
+            $table->timestamp('email_verified_at')->nullable(); // Add this column
             $table->string('password'); // Store the hashed password
             $table->enum('role', ['admin', 'user'])->default('user'); // Store the role, default to 'user'
             $table->rememberToken(); // For "remember me" functionality
             $table->timestamps(); // Timestamps for created_at and updated_at
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('users'); // Drop the users table if we rollback the migration
